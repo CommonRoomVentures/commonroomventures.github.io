@@ -221,8 +221,9 @@ footer {
 
 code { 
 
-  color: var(--txt-secondary); 
+  color: var(--txt-main); 
   letter-spacing: .0625rem;
+  word-wrap: break-word;
  }
 
 /* focused checkboxes */
@@ -238,4 +239,3 @@ input:focus-within + label{
   outline: var(--txt-main) dashed .125rem; 
   outline-offset: .125rem;
   }
-

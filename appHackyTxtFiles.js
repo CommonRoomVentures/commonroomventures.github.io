@@ -22,43 +22,47 @@ const getChecked = () => {
 };
 
 // apply ticker symbol to URL
-// TODO get cik as ticker input using getCIK()
+// TODO get cik as ticker input using getCIK() 
 // const makeLinks = (checkedVal, tickerInput) => {
 //   const linksArr = checkedVal.map((site) => `${site}${tickerInput}`);
 //   openSites(linksArr);
 // };
-const makeLinks = async (checkedVal, tickerInput) => {
-  const cik = await cikPromise(tickerInput);
+const makeLinks = (checkedVal, tickerInput) => {
   const linksArr = checkedVal.map((site) => {
-    if (
-      site === "https://docoh.com/company/" ||
-      site === "https://www.sec.gov/cgi-bin/browse-edgar?CIK="
-    ) {
-      return `${site}${cik}`;
-    } else {
-      return `${site}${tickerInput}`;
-    }
+    if(site === 'https://docoh.com/company/' || site === 'https://www.sec.gov/cgi-bin/browse-edgar?CIK=') { 
+      const cik = getCIK(tickerInput); 
+      return `${site}${cik}`
+    } else { 
+    return `${site}${tickerInput}`
+  }
   });
   openSites(linksArr);
 };
 
 // open URLs in new tabs in one new window
 const openSites = (linksArr) => {
-  linksArr.forEach((link) => {
+  linksArr.forEach(link => {
     window.open(link);
   });
 };
 
 // ---------
-// TODO use indexOf to get cik
-const cikPromise = async (tickerInput) => {
-  const data = await getJSON();
-  const filtered = data.filter((obj) => obj.ticker === tickerInput);
-  return filtered[0].cik;
-};
+// TODO use indexOf to get cik 
+const getCIK = async (tickerInput) => {
+  const rawNums = './CIK/number_CIK.txt';
+  const rawTickers = './CIK/ticker_CIK.txt';
+  const cikArr = [rawNums, rawTickers];
 
-const getJSON = async () => {
-  const res = await fetch("./CIK/cik-json.json");
-  const data = await res.json();
-  return data;
-};
+  const nums = await fetch(cikArr[0])
+    .then(response => response.text())
+    .then(data => data.split('\n'))
+
+  const tickers = await fetch(cikArr[1])
+    .then(response => response.text())
+    .then(data => data.split('\n'))
+
+
+  const getIndex = tickers.indexOf(tickerInput); 
+  const getValue = nums[getIndex]; 
+  return getValue; 
+}

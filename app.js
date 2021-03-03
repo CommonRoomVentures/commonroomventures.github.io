@@ -1,17 +1,24 @@
+// button element 
 const button = document.querySelector(".submit-button");
 
+// button event listener 
 button.addEventListener("click", function () {
-  const tickerEl = document.getElementById("ticker-search");
-  const tickerInput = document.getElementById("ticker-search").value;
+  const tickerField = document.getElementById("ticker-search");
+  const tickerValue = document.getElementById("ticker-search").value;
   const checked = getChecked();
-  if (tickerInput === "") {
-    tickerEl.focus();
+  if (tickerValue === "") {
+    tickerField.focus();
     return alert("Enter a ticker");
   } else if (checked.length === 0) {
     return alert("Select sites");
   }
-  makeLinks(checked, tickerInput);
+  compose(tickerValue, checked);
 });
+
+const compose = async (ticker, checked) => {
+  const links = await makeLinks(checked, ticker);
+  openSites(links);
+}
 
 // get URL value from checked checkboxes
 const getChecked = () => {
@@ -21,44 +28,39 @@ const getChecked = () => {
   return checked;
 };
 
-// apply ticker symbol to URL
-// TODO get cik as ticker input using getCIK()
-// const makeLinks = (checkedVal, tickerInput) => {
-//   const linksArr = checkedVal.map((site) => `${site}${tickerInput}`);
-//   openSites(linksArr);
-// };
-const makeLinks = async (checkedVal, tickerInput) => {
-  const cik = await cikPromise(tickerInput);
-  const linksArr = checkedVal.map((site) => {
+
+
+const makeLinks = async (checked, ticker) => {
+  const jsonObj = await getJSON();
+  const cik = await filter(jsonObj, ticker);
+  const linksArr = checked.map((site) => {
     if (
       site === "https://docoh.com/company/" ||
       site === "https://www.sec.gov/cgi-bin/browse-edgar?CIK="
     ) {
       return `${site}${cik}`;
     } else {
-      return `${site}${tickerInput}`;
+      return `${site}${ticker}`;
     }
-  });
-  openSites(linksArr);
-};
+  })
+  return (linksArr);
+}
 
-// open URLs in new tabs in one new window
+
+
+const getJSON = async (tickerInput) => {
+  const res = await fetch("./CIK/cik-json.json");
+  const json = await res.json();
+  return json;
+}
+
+const filter = async (json, tickerInput) => {
+  const filtered = await json.filter((obj) => obj.ticker === tickerInput);
+  return await filtered[0].cik;
+}
+
 const openSites = (linksArr) => {
   linksArr.forEach((link) => {
     window.open(link);
   });
-};
-
-// ---------
-// TODO use indexOf to get cik
-const cikPromise = async (tickerInput) => {
-  const data = await getJSON();
-  const filtered = data.filter((obj) => obj.ticker === tickerInput);
-  return filtered[0].cik;
-};
-
-const getJSON = async () => {
-  const res = await fetch("./CIK/cik-json.json");
-  const data = await res.json();
-  return data;
-};
+}

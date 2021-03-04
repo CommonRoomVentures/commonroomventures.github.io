@@ -55,8 +55,15 @@ const getJSON = async (tickerInput) => {
 }
 
 const filter = async (json, tickerInput) => {
-  const filtered = await json.filter((obj) => obj.ticker === tickerInput);
-  return await filtered[0].cik;
+  try { 
+    const filtered = await json.filter((obj) => obj.ticker === tickerInput);
+    return await filtered[0].cik;
+   }
+   catch(e) {  
+    alert('Ticker not found');
+    throw new Error("Ticker not found");
+   }
+
 }
 
 const openSites = (linksArr) => {

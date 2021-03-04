@@ -1,7 +1,7 @@
-// button element 
+// button element
 const button = document.querySelector(".submit-button");
 
-// button event listener 
+// button event listener
 button.addEventListener("click", function () {
   const tickerField = document.getElementById("ticker-search");
   const tickerValue = document.getElementById("ticker-search").value;
@@ -18,7 +18,7 @@ button.addEventListener("click", function () {
 const compose = async (ticker, checked) => {
   const links = await makeLinks(checked, ticker);
   openSites(links);
-}
+};
 
 // get URL value from checked checkboxes
 const getChecked = () => {
@@ -27,8 +27,6 @@ const getChecked = () => {
   ].map((e) => e.value);
   return checked;
 };
-
-
 
 const makeLinks = async (checked, ticker) => {
   const jsonObj = await getJSON();
@@ -42,32 +40,28 @@ const makeLinks = async (checked, ticker) => {
     } else {
       return `${site}${ticker}`;
     }
-  })
-  return (linksArr);
-}
-
-
+  });
+  return linksArr;
+};
 
 const getJSON = async (tickerInput) => {
   const res = await fetch("./CIK/cik-json.json");
   const json = await res.json();
   return json;
-}
+};
 
 const filter = async (json, tickerInput) => {
-  try { 
+  try {
     const filtered = await json.filter((obj) => obj.ticker === tickerInput);
     return await filtered[0].cik;
-   }
-   catch(e) {  
-    alert('Ticker not found');
+  } catch (e) {
+    alert("Ticker not found");
     throw new Error("Ticker not found");
-   }
-
-}
+  }
+};
 
 const openSites = (linksArr) => {
   linksArr.forEach((link) => {
     window.open(link);
   });
-}
+};

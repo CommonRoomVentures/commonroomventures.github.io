@@ -210,7 +210,7 @@ input:focus-within + label {
   padding-left: 1rem;
 }
 
-input:focus-within + label:before {
+input:focus-within + label:before, a:hover {
   top: 0;
   width: 100%;
   height: 2em;
@@ -221,6 +221,14 @@ input:focus-within + label:before {
 .mobile-only { 
   display: none; 
  }
+
+a { 
+  color: $txt-main;
+ }
+
+//  a:hover { 
+//   color: $accent-neg; 
+// }
 
 @media only screen and (max-width: 800px){
   .wrapper, header #desc { 

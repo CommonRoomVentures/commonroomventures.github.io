@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/index.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tickerSearch</title>
-    <script src="/app.js" defer></script>
-  </head>
 
-  <body>
-    <main>
-      <header>
-        <h1>tickerSearch</h1>
-        <p>tickerSearch opens each selected link in a tab.</p>
-      </header>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/sass-index.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tickerSearch</title>
+  <script src="/app.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>tickerSearch</h1>
+      <p id="desc">tickerSearch opens each selected link in a new tab.</p>
+      <div class="mobile-only"><p>tickerSearch is not yet available on mobile.</p></div>
+    </header>
+    <div class="wrapper">
 
       <section class="search">
         <label for="ticker-search">ticker</label>
-        <input
-          type="search"
-          name="ticker"
-          id="ticker-search"
-          placeholder="enter a stock symbol"
-        />
+        <input type="search" name="ticker" id="ticker-search" placeholder="enter a stock symbol" />
         <button type="button" class="submit-button">Submit</button>
       </section>
 
@@ -31,20 +29,10 @@
 
       <h3>Technical Analysis</h3>
       <div class="container group options">
-        <input
-          type="checkbox"
-          name="cb"
-          id="stockcharts"
-          value="https://stockcharts.com/h-sc/ui?s="
-        />
+        <input type="checkbox" name="cb" id="stockcharts" value="https://stockcharts.com/h-sc/ui?s=" />
         <label for="stockcharts">StockCharts</label>
 
-        <input
-          type="checkbox"
-          name="cb"
-          id="tradingview"
-          value="https://www.tradingview.com/chart/?symbol="
-        />
+        <input type="checkbox" name="cb" id="tradingview" value="https://www.tradingview.com/chart/?symbol=" />
         <label for="tradingview">TradingView</label>
       </div>
 
@@ -53,109 +41,64 @@
         <input type="checkbox" name="cb" id="docoh" value="https://docoh.com/company/" />
         <label for="docoh">Docoh</label>
 
-        <input
-          type="checkbox"
-          name="cb"
-          id="finviz"
-          value="https://finviz.com/quote.ashx?t="
-        />
+        <input type="checkbox" name="cb" id="finviz" value="https://finviz.com/quote.ashx?t=" />
         <label for="finviz">FinViz</label>
 
         <input type="checkbox" name="cb" id="sec" value="https://www.sec.gov/cgi-bin/browse-edgar?CIK=" />
         <label for="sec">SEC.gov</label>
 
-        <input type="checkbox" name"cb" id="earnings-whispers"
-        value="https://www.earningswhispers.com/stocks/">
+        <input type="checkbox" name"cb" id="earnings-whispers" value="https://www.earningswhispers.com/stocks/">
         <label for="earnings-whispers">Earnings Whispers</label>
 
-        <input type="checkbox" name"cb" id="fintel"
-        value="https://fintel.io/s/us/">
+        <input type="checkbox" name"cb" id="fintel" value="https://fintel.io/s/us/">
         <label for="fintel">Fintel</label>
       </div>
 
       <h3>Insider Buying</h3>
       <div class="container group options">
-        <input
-          type="checkbox"
-          name="cb"
-          id="openinsider"
-          value="http://openinsider.com/search?q="
-        />
+        <input type="checkbox" name="cb" id="openinsider" value="http://openinsider.com/search?q=" />
         <label for="openinsider">OpenInsider</label>
 
-        <input
-          type="checkbox"
-          name="cb"
-          id="whalewisdom"
-          value="https://whalewisdom.com/stock/"
-        />
+        <input type="checkbox" name="cb" id="whalewisdom" value="https://whalewisdom.com/stock/" />
         <label for="whalewisdom">WhaleWisdom</label>
       </div>
 
       <h3>News</h3>
       <div class="container group options">
-        <input
-          type="checkbox"
-          name="cb"
-          id="seekingalpha"
-          value="https://seekingalpha.com/symbol/"
-        />
+        <input type="checkbox" name="cb" id="seekingalpha" value="https://seekingalpha.com/symbol/" />
         <label for="seekingalpha">SeekingAlpha.com</label>
 
-        <input
-          type="checkbox"
-          name="cb"
-          id="marketwatch"
-          value="https://www.marketwatch.com/investing/stock/"
-        />
+        <input type="checkbox" name="cb" id="marketwatch" value="https://www.marketwatch.com/investing/stock/" />
         <label for="marketwatch">MarketWatch.com</label>
 
-        <input
-          type="checkbox"
-          name="cb"
-          id="yahoo-finance"
-          value="https://finance.yahoo.com/quote/"
-        />
+        <input type="checkbox" name="cb" id="yahoo-finance" value="https://finance.yahoo.com/quote/" />
         <label for="yahoo-finance">Yahoo Finance</label>
       </div>
 
       <h3>Social Media</h3>
       <div class="container group options">
-        <input
-          type="checkbox"
-          name="cb"
-          id="twitter"
-          value="https://twitter.com/search?q="
-        />
+        <input type="checkbox" name="cb" id="twitter" value="https://twitter.com/search?q=" />
         <label for="twitter">Twitter</label>
 
-        <input
-          type="checkbox"
-          name="cb"
-          id="stocktwits"
-          value="https://stocktwits.com/symbol/"
-        />
+        <input type="checkbox" name="cb" id="stocktwits" value="https://stocktwits.com/symbol/" />
         <label for="stocktwits">Stocktwits</label>
 
-        <input
-          type="checkbox"
-          name="cb"
-          id="reddit"
-          value="https://www.reddit.com/search/?q="
-        />
+        <input type="checkbox" name="cb" id="reddit" value="https://www.reddit.com/search/?q=" />
         <label for="reddit">Reddit</label>
       </div>
-    </main>
+  </main>
 
-    <footer>
-      <h2>Support</h2>
-      <h3>Crypto</h3>
-      <h4>Bitcoin</h4>
-      <code>3QQLKYQtfnJS5qmB2UCQEUY121VeB83e8u</code>
-      <h4>Ethereum</h4>
-      <code>0x6af9FEA69B8EFe88607Bf81197b175E6C059572B</code>
-      <h4>Doge</h4>
-      <code>D879kB2TB2ZcFnfukAQaabFLmeuxUHdX2z</code>
-    </footer>
-  </body>
+  <footer>
+    <h2>Support</h2>
+    <p>We're just getting started. Get in early.</p>
+    <h3>Bitcoin</h3>
+    <code>3QQLKYQtfnJS5qmB2UCQEUY121VeB83e8u</code>
+    <h3>Ethereum</h3>
+    <code>0x6af9FEA69B8EFe88607Bf81197b175E6C059572B</code>
+    <h3>Doge</h3>
+    <code>D879kB2TB2ZcFnfukAQaabFLmeuxUHdX2z</code>
+  </footer>
+  </div>
+</body>
+
 </html>

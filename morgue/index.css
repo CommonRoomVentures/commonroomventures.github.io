@@ -1,0 +1,236 @@
+/* import typefaces */
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Rubik&display=swap");
+
+:root {
+  /* colors */
+  --bg-main: #131823;
+  --txt-main: #f7f7f7;
+  --txt-secondary: #2788e5;
+  --accent-pos: #37766f;
+  --accent-neg: #ea5250;
+  --accent-neut: ##2a2f39;
+
+  /* typefaces */
+  --text-heading: "Rubik", sans-serif;
+  --text-copy: "Lato", sans-serif;
+
+  /* spacing */
+  --margin: 0.5rem;
+  --modifier: calc(40rem - 100%);
+}
+
+html {
+  font-size: 16px;
+}
+
+/* screen reader-only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* vintage IE */
+  clip: rect(1px, 1px, 1px, 1px);
+  border: 0;
+}
+
+/* reset */
+/* body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+} */
+
+
+/* ALBATROSS LAYOUT */
+body {
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 60rem;
+  background-color: var(--bg-main);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  --margin: 1rem;
+  --modifier: calc(40rem - 100%);
+  margin: calc(var(--margin) * -1);
+}
+
+.container > * {
+  flex-grow: 0;
+  flex-basis: calc(var(--modifier) * 999);
+  margin: var(--margin);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--txt-secondary);
+  font-family: var(--text-heading);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+p,
+label {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  color: var(--txt-main);
+  font-family: var(--text-copy);
+  font-size: 1.25rem;
+  white-space: nowrap; 
+}
+
+.search {
+  padding-right: 4rem;
+}
+
+.search label,
+.search input {
+  display: block;
+  padding: 0.25rem;
+  min-width: 8rem;
+  font-size: 1.25rem;
+}
+
+.search input {
+  border-radius: 2px;
+  border-style: solid;
+  background: var(--txt-main);
+  border-color: var(--txt-main);
+  font-size: 1.25rem;
+}
+
+input::placeholder {
+  color: var(--bg-main);
+  padding: 0.25rem;
+}
+
+input:focus::placeholder {
+  opacity: 0;
+}
+
+.submit-button {
+  display: inline;
+  padding: 0.5rem 1.5rem;
+  margin: 0.5rem 0;
+  background-color: var(--txt-main);
+  border-color: var(--txt-main);
+  border-style: none;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.submit-button:hover {
+  background-color: var(--txt-secondary);
+  color: var(--bg-main);
+  cursor: pointer;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+input[type="checkbox"]{
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+label {
+  position: relative;
+  margin-right: 1em;
+  padding-left: 2em;
+  padding-right: 1em;
+  line-height: 2;
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+.options label:before {
+  box-sizing: border-box;
+  content: " ";
+  position: absolute;
+  top: 0.3em;
+  left: 0;
+  display: block;
+  width: 1.4em;
+  height: 1.4em;
+  border: 2px solid var(--txt-main);
+  border-radius: 0.25em;
+  z-index: -1;
+}
+
+/* Checked */
+input[type="checkbox"]:checked + label {
+  padding-left: 1em;
+  color: var(--txt-main);
+}
+input[type="checkbox"]:checked + label:before {
+  top: 0;
+  width: 100%;
+  height: 2em;
+  background: var(--accent-pos);
+}
+
+/* Transition */
+label,
+label::before {
+  transition: 0.25s all ease;
+}
+
+footer { 
+  margin-top: 4rem; 
+  margin-bottom: 4rem; 
+ }
+
+code { 
+
+  color: var(--txt-main); 
+  letter-spacing: .0625rem;
+  word-wrap: break-word;
+ }
+
+/* focused checkboxes */
+input:focus-within + label{ 
+  padding-left: 1rem; 
+ }
+
+ input:focus-within + label:before {
+  top: 0;
+  width: 100%;
+  height: 2em;
+  /* background: var(--txt-secondary); */
+  outline: var(--txt-main) dashed .125rem; 
+  outline-offset: .125rem;
+  }

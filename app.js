@@ -1,18 +1,20 @@
 // button element
-const button = document.querySelector(".submit-button");
+const button = [...document.querySelectorAll(".submit-button")];
 
 // button event listener
-button.addEventListener("click", function () {
-  const tickerField = document.getElementById("ticker-search");
-  const tickerValue = document.getElementById("ticker-search").value;
-  const checked = getChecked();
-  if (tickerValue === "") {
-    tickerField.focus();
-    return alert("Enter a ticker");
-  } else if (checked.length === 0) {
-    return alert("Select sites");
-  }
-  compose(tickerValue, checked);
+button.forEach((searchBtn) => {
+  searchBtn.addEventListener("click", function () {
+    const tickerField = document.getElementById("ticker-search");
+    const tickerValue = document.getElementById("ticker-search").value;
+    const checked = getChecked();
+    if (tickerValue === "") {
+      tickerField.focus();
+      return alert("Enter a ticker");
+    } else if (checked.length === 0) {
+      return alert("Select sites");
+    }
+    compose(tickerValue, checked);
+  });
 });
 
 const compose = async (ticker, checked) => {

@@ -5,7 +5,7 @@ const button = [...document.querySelectorAll(".submit-button")];
 button.forEach((searchBtn) => {
   searchBtn.addEventListener("click", function () {
     const tickerField = document.getElementById("ticker-search");
-    const tickerValue = document.getElementById("ticker-search").value;
+    const tickerValue = document.getElementById("ticker-search").value.toLowerCase();
     const checked = getChecked();
     if (tickerValue === "") {
       tickerField.focus();
